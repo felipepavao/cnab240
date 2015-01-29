@@ -10,10 +10,12 @@ Cnab240.setup do |config|
 end
 
 
-arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./tmp/ret/SB13104C.RET")[0]
-puts arquivo_read.lotes
+arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./tmp/out/SB22114A.RET")[0]
 
 arquivo_read.lotes.each_with_index do |lote_read, i|
-	#puts lote_read.header
-	puts lote_read.trailer
+	lote_read.segmentos.each do |s|
+		puts s.to_s + "\n"
+		puts s["credito_nosso_numero"]
+	end
+	#puts lote_read.segmentos[i].credito_valor_pagamento
 end

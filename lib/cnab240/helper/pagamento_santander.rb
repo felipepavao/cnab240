@@ -1,16 +1,15 @@
 module Cnab240
-  class PagamentoItau < Helper
+  class PagamentoSantander < Helper
 
     def initialize(campos = {})
-      campos[:controle_banco] ||= '341'
+      campos[:controle_banco] ||= '033'
       campos[:arquivo_codigo] ||= '1'
-      campos[:banco_nome] ||= 'BANCO ITAU'
+      campos[:banco_nome] ||= 'Banco Santander (Brasil) S.A.'
       campos[:arquivo_data_geracao] ||= (Time.respond_to?(:current) ? Time.current : Time.now).strftime('%d%m%Y')
       campos[:arquivo_hora_geracao] ||= (Time.respond_to?(:current) ? Time.current : Time.now).strftime('%H%M%S')
 
       @arquivo = Cnab240::Arquivo::Arquivo.new('V80')
-      
-      #@arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V80')
+      @arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V80')
 
       fill campos, arquivo.header, arquivo.trailer
 
@@ -26,14 +25,13 @@ module Cnab240
       campos[:servico_operacao] ||= 'C'
       campos[:controle_lote] ||= '0001'
 
-      #fill campos, lote.header
-      fill campos, lote.header, lote.trailer
+      fill campos, lote.header
     end
 
     def <<(campos)
       lote = @arquivo.lotes.last
 
-      campos[:controle_banco] ||= '341'
+      campos[:controle_banco] ||= '033'
       campos[:controle_lote] ||= @arquivo.lotes.length.to_s
       campos[:servico_numero_registro] ||= (lote.segmentos.length+1).to_s
       campos[:servico_tipo_movimento] ||= '000'

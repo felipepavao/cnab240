@@ -66,7 +66,7 @@ describe PagamentoItau do
       :credito_data_pagamento => '30122012',
       :credito_valor_pagamento => '100'
     }
-
+    puts pagamento.arquivo.lotes
     expect(pagamento.arquivo.header.banco_nome.strip).to eq 'BANCO ITAU'
 
     # Simulando arquivo de escrita

@@ -14,10 +14,10 @@ module Cnab240
 
       fill campos, arquivo.header, arquivo.trailer
 
-      campos[:servico_operacao] ||= 'C'
-      campos[:controle_lote] ||= '0001'
+      # campos[:servico_operacao] ||= 'C'
+      # campos[:controle_lote] ||= '0001'
 
-      fill campos, lote.header, lote.trailer
+      #fill campos, lote.header, lote.trailer
     end
 
     def add_lote(campos = {})
@@ -32,7 +32,7 @@ module Cnab240
 
     def <<(campos)
       lote = @arquivo.lotes.last
-
+      
       campos[:controle_banco] ||= '341'
       campos[:controle_lote] ||= @arquivo.lotes.length.to_s
       campos[:servico_numero_registro] ||= (lote.segmentos.length+1).to_s

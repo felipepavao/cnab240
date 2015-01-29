@@ -10,14 +10,14 @@ module Cnab240
 
       @arquivo = Cnab240::Arquivo::Arquivo.new('V80')
       
-      #@arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V80')
+      @arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V80')
 
       fill campos, arquivo.header, arquivo.trailer
 
-      # campos[:servico_operacao] ||= 'C'
-      # campos[:controle_lote] ||= '0001'
+      campos[:servico_operacao] ||= 'C'
+      campos[:controle_lote] ||= '0001'
 
-      #fill campos, lote.header, lote.trailer
+      fill campos, lote.header, lote.trailer
     end
 
     def add_lote(campos = {})
@@ -26,8 +26,7 @@ module Cnab240
       campos[:servico_operacao] ||= 'C'
       campos[:controle_lote] ||= '0001'
 
-      #fill campos, lote.header
-      fill campos, lote.header, lote.trailer
+      fill campos, lote.header
     end
 
     def <<(campos)

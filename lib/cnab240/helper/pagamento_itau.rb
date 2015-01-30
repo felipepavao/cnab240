@@ -26,7 +26,7 @@ module Cnab240
       campos[:servico_operacao] ||= 'C'
       campos[:controle_lote] ||= '0001'
 
-      fill campos, lote.header
+      fill campos, lote.header, lote.trailer
     end
 
     def <<(campos)

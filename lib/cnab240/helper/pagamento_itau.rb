@@ -26,7 +26,7 @@ module Cnab240
       campos[:servico_operacao] ||= 'C'
       campos[:controle_lote] ||= '0001'
 
-      fill campos, lote.header, lote.trailer
+      fill campos, lote.header
     end
 
     def <<(campos)
@@ -44,6 +44,11 @@ module Cnab240
       fill campos, segmento_a.favorecido_agencia_conta
 
       lote << segmento_a
+    end
+
+    def add_service(campos = {})
+      lote = @arquivo.lotes.last
+      segmento = lote.segmentos.last
     end
 
   end

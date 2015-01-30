@@ -47,8 +47,8 @@ module Cnab240
     end
 
     def add_service(campos = {})
-      lote = @arquivo.lotes.last
-      segmento = lote.segmentos.last
+      lote_header = @arquivo.lotes.last.header
+      fill campos, lote_header
     end
 
   end

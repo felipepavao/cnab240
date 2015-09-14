@@ -40,7 +40,7 @@ module Cnab240::V80
 
     lstring :numero_documento, :length => 6, :pad_byte => '0'
     #string :numero_inscricao, :length => 14, :pad_byte => ' '
-    string :numero_inscricao, :length => 14, :pad_byte => '0'
+    lstring :numero_inscricao, :length => 14, :pad_byte => '0'
     string :codigo_finalidade_complementar, :length => 2, :pad_byte => ' '
     string :finalidade_ted, :length => 5, :pad_byte => ' '
     string :brancos_3, :length => 5, :pad_byte => ' '
